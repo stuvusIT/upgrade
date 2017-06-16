@@ -1,5 +1,6 @@
 - name: Update packages list
-  apt: update_cache=yes
+  apt:
+    update_cache: yes
   changed_when: false
 
 - name: List packages to upgrade (1/2)
@@ -13,7 +14,8 @@
   when: updates.stdout_lines | count > 1
 
 - name: Upgrade packages
-  apt: upgrade=safe
+  apt:
+    upgrade: safe
 
 - name: Check what the new version is
   shell:  lsb_release -r | awk '{print $2}'
@@ -25,10 +27,17 @@
   when: ansible_lsb.release != new_release.stdout
 
 - name: List services to restart (1/2)
-  shell: checkrestart | grep ^service | awk '{print $2}'
+  shell: needrestart -b -r l | grep ^NEEDRESTART-SVC | awk -F '[ .]' '{print $2}'
   register: services
   changed_when: false
 
 - name: List services to restart (2/2)
   debug: msg="{{ services.stdout_lines | count }} services to restart ({{ services.stdout_lines | join (', ') }})"
+  when: services.stdout_lines
+
+- name: Restart services
+  service:
+    name: "{{ item }}"
+    state: restarted
+  with_items: "{{ services.stdout_lines }}"
   when: services.stdout_lines
