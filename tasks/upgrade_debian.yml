@@ -40,4 +40,4 @@
     name: "{{ item }}"
     state: restarted
   with_items: "{{ services.stdout_lines }}"
-  when: services.stdout_lines and upgrade_restart_services
+  when: services.stdout_lines and upgrade_restart_services and item != "dbus"
