@@ -3,6 +3,13 @@
     update_cache: yes
   changed_when: false
 
+- name: Install dependencies
+  apt:
+    name: "{{ item }}"
+  with_items:
+    - aptitude
+    - needrestart
+
 - name: List packages to upgrade (1/2)
   shell: aptitude -q -F%p --disable-columns search '~U'
   register: updates
