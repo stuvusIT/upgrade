@@ -5,10 +5,6 @@ Simple ansible playbook to upgrade servers, based on [debian_upgrade.yml](https:
 
 ## Requirements
 
-A debian based distribution at all hosts to be upgraded and the following packages:
- * aptitude
- * needrestart
-
 ## Role Variables
 
 | Option                     | Type    | Default | Description                                                                      | Required |
