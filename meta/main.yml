@@ -1,24 +1,26 @@
 galaxy_info:
   author: Markus Mroch (Mr. Pi)
-  description: Ansible role to upgrade servers
+  description: Ansible role to upgrade apt packages and restart services
   company: stuvus (https://stuvus.uni-stuttgart.de)
 
   license: https://creativecommons.org/licenses/by-sa/4.0/
 
-  min_ansible_version: 2.2
+  min_ansible_version: 2.4
 
   github_branch: master
 
   platforms:
     - name: Ubuntu
       versions:
+        - xenial
         - yakkety
-    - name: Debian
-      versions:
-        - jessie
+        - zesty
+        - artful
 
   galaxy_tags:
-    - stuvus
+    - ubuntu
+    - apt
+    - update
     - upgrade
 
 dependencies: []

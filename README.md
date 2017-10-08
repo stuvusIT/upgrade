@@ -2,13 +2,6 @@
 
 Simple ansible playbook to upgrade servers, based on [debian_upgrade.yml](https://gist.github.com/maethor/380676f6b1cec8cc7439) by Guillaume Subiron (maethor)
 
-
-## Requirements
-
-A debian based distribution at all hosts to be upgraded and the following packages:
- * aptitude
- * needrestart
-
 ## Role Variables
 
 | Option                     | Type    | Default | Description                                                                      | Required |
