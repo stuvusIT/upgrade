@@ -1,3 +1,4 @@
+---
 galaxy_info:
   author: Markus Mroch (Mr. Pi)
   description: Ansible role to upgrade servers
