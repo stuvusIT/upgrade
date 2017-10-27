@@ -1,2 +1,4 @@
 ---
 upgrade_restart_services: true
+upgrade_restart_services_ignore:
+  - dbus
