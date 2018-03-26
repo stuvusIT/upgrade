@@ -11,6 +11,11 @@
     - aptitude
     - needrestart
 
+- name: Remove needrestart DPKG hook
+  file:
+    path: /etc/dpkg/dpkg.cfg.d/needrestart
+    state: absent
+
 - name: List packages to upgrade (1/2)
   shell: aptitude -q -F%p --disable-columns search '~U'
   register: updates
