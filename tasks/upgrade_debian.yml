@@ -58,3 +58,9 @@
 - name: Reexec systemd
   command: systemctl daemon-reexec
   when: "services.stdout_lines and 'systemd' in services.stdout_lines"
+
+- name: Clean apt cache and remove unused packages
+  apt:
+    autoclean: "{{ upgrade_do_autoclean }}"
+    autoremove: "{{ upgrade_do_autoremove }}"
+  when: upgrade_do_autoclean or upgrade_do_autoremove

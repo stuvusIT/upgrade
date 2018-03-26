@@ -1,4 +1,6 @@
 ---
-upgrade_restart_services: true
+upgrade_restart_services: True
 upgrade_restart_services_ignore:
   - dbus
+upgrade_do_autoremove: True
+upgrade_do_autoclean: True
