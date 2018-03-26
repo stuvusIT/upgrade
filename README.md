@@ -4,10 +4,12 @@ Simple Ansible role to upgrade hosts, based on [debian_upgrade.yml](https://gist
 
 ## Role Variables
 
-| Option                            | Type    | Default | Description                                                                    | Required |
-|:----------------------------------|:--------|:--------|:-------------------------------------------------------------------------------|:--------:|
-| `upgrade_restart_services`        | boolean | `true`  | Automatically restart services, when needed (e.g. linked libaries are updated) | N        |
-| `upgrade_restart_services_ignore` | list    | `[]`    | List of services that shall not be restarted. `dbus` is always appended.       | N        |
+| Option                            | Type    | Default | Description                                                                                     | Required |
+|:----------------------------------|:--------|:--------|:------------------------------------------------------------------------------------------------|:--------:|
+| `upgrade_restart_services`        | boolean | `True`  | Automatically restart services, when needed (e.g. linked libaries are updated)                  |     N    |
+| `upgrade_restart_services_ignore` | list    | `[]`    | List of services that shall not be restarted. `dbus` is always appended.                        |     N    |
+| `upgrade_do_autoremove`           | boolean | `True`  | Automatically remove no longer needed packages (e.g. old kernels)                               |     N    |
+| `upgrade_do_autoclean`            | boolean | `True`  | If yes, cleans the local repository of retrieved package files that can no longer be downloaded |     N    |
 
 You cannot list systemd in the list of ignored services, the `systemctl daemon-reexec` will always be executed when a library dependency of systemd changes.
 
