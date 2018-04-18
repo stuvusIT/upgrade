@@ -1,0 +1,13 @@
+---
+- name: Check if gem is installed
+  command: 'which gem'
+  register: which_gem
+  changed_when: False
+  failed_when: False
+
+- name: Update gems
+  command: 'gem update'
+  when: "which_gem.stdout and 'not found' not in which_gem.stdout"
+  register: update_gem
+  changed_when: "'Updating' in update_gem|regex_replace('Updating installed gems')"
+  failed_when: "'ERROR:' in update_gem.stdout"

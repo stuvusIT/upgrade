@@ -2,3 +2,9 @@
 - include_tasks: upgrade_debian.yml
   when: ansible_os_family == "Debian"
   tags: upgrade
+
+- include_tasks: upgrade_gem.yml
+  tags: upgrade
+
+- include_tasks: upgrade_npm.yml
+  tags: upgrade
