@@ -2,7 +2,7 @@
 - name: Update packages list
   apt:
     update_cache: yes
-  changed_when: false
+  changed_when: False
 
 - name: Install dependencies
   apt:
@@ -32,7 +32,7 @@
 
 - name: Check what the new version is
   shell:  lsb_release -r | awk '{print $2}'
-  changed_when: false
+  changed_when: False
   register: new_release
 
 - name: Notify distribution version upgrade
@@ -42,7 +42,7 @@
 - name: List services to restart (1/2)
   shell: needrestart -b -r l | grep ^NEEDRESTART-SVC | awk -F '[ .]' '{print $2}'
   register: services
-  changed_when: false
+  changed_when: False
 
 - name: List services to restart (2/2)
   debug: msg="{{ services.stdout_lines | count }} services to restart ({{ services.stdout_lines | join (', ') }})"
