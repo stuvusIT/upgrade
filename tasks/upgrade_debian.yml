@@ -1,10 +1,9 @@
 ---
 - name: Install dependencies
   apt:
-    name: "{{ item }}"
-  with_items:
-    - aptitude
-    - needrestart
+    name:
+      - aptitude
+      - needrestart
 
 - name: Remove needrestart DPKG hook
   file:
