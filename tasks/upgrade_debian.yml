@@ -4,6 +4,7 @@
     name:
       - aptitude
       - needrestart
+      - lsb-release
 
 - name: Remove needrestart DPKG hook
   file:
