@@ -1,0 +1,5 @@
+---
+- name: Gathering Facts
+  setup:
+    gather_subset: all
+  listen: gather_facts
