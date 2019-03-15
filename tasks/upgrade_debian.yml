@@ -5,6 +5,9 @@
       - aptitude
       - needrestart
       - lsb-release
+  notify: gather_facts
+
+- meta: flush_handlers
 
 - name: Remove needrestart DPKG hook
   file:
