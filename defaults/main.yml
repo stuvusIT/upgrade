@@ -4,3 +4,5 @@ upgrade_restart_services_ignore:
   - dbus
 upgrade_do_autoremove: True
 upgrade_do_autoclean: True
+upgrade_gem: True
+upgrade_npm: True

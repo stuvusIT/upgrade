@@ -5,6 +5,8 @@
 
 - include_tasks: upgrade_gem.yml
   tags: upgrade
+  when: upgrade_gem
 
 - include_tasks: upgrade_npm.yml
   tags: upgrade
+  when: upgrade_npm
