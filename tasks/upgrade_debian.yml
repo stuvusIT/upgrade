@@ -54,7 +54,8 @@
   when: services.stdout_lines and upgrade_restart_services and item not in upgrade_restart_services_ignore | union(['dbus', 'systemd'])
 
 - name: Reexec systemd
-  command: systemctl daemon-reexec
+  systemd:
+    daemon_reexec: True
   when: "services.stdout_lines and 'systemd' in services.stdout_lines"
 
 - name: Clean apt cache and remove unused packages
