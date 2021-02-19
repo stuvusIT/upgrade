@@ -38,7 +38,7 @@
   when: ansible_lsb.release != new_release.stdout
 
 - name: List services to restart (1/2)
-  shell: needrestart -b -r l | grep ^NEEDRESTART-SVC | grep -F .service | awk -F '[ .]' '{print $2}'
+  shell: needrestart -b -r l | grep ^NEEDRESTART-SVC | grep -F .service | awk -F '[ ]' '{print $2}' | sed 's/.service//'
   register: services
   changed_when: False
 
