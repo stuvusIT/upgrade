@@ -22,7 +22,7 @@
 
 - name: List packages to upgrade (2/2)
   debug: msg="{{ updates.stdout_lines | count }} packages to upgrade ({{ updates.stdout_lines | join(', ') }})"
-  when: updates.stdout_lines | count > 1
+  when: updates.stdout_lines | count > 0
 
 - name: Upgrade packages
   apt:
@@ -44,19 +44,19 @@
 
 - name: List services to restart (2/2)
   debug: msg="{{ services.stdout_lines | count }} services to restart ({{ services.stdout_lines | join (', ') }})"
-  when: services.stdout_lines
+  when: services.stdout_lines | count > 0
 
 - name: Restart services
   service:
     name: "{{ item }}"
     state: restarted
   with_items: "{{ services.stdout_lines }}"
-  when: services.stdout_lines and upgrade_restart_services and item not in upgrade_restart_services_ignore | union(['dbus', 'systemd'])
+  when: services.stdout_lines | count > 0 and upgrade_restart_services and item not in upgrade_restart_services_ignore | union(['dbus', 'systemd'])
 
 - name: Reexec systemd
   systemd:
     daemon_reexec: True
-  when: "services.stdout_lines and 'systemd' in services.stdout_lines"
+  when: "services.stdout_lines | count > 0 and 'systemd' in services.stdout_lines"
 
 - name: Clean apt cache and remove unused packages
   apt:

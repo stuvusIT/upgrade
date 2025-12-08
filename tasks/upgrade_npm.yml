@@ -7,4 +7,4 @@
 
 - name: Update npm
   command: 'npm update -g'
-  when: "which_npm.stdout and 'not found' not in which_npm.stdout"
+  when: "which_npm.stdout | length > 0 and 'not found' not in which_npm.stdout"
